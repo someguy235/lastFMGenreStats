@@ -15,6 +15,7 @@ body {
     background: #fff;
     color: #333;
     font: 11px verdana, arial, helvetica, sans-serif;
+		margin-left: 1em;
 }
 #grailsLogo {
 	padding:20px;
