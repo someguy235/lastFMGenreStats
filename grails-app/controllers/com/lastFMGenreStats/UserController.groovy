@@ -23,24 +23,27 @@ class UserController {
 			
 			render "<br />"
 			//for (artist in 0..(topArtistsList.size()-1)) {
-			for (artist in 0..5) {
+			for (artist in 0..4) {
+				Thread.currentThread().sleep(1000)
 				def artistRank 	= topArtistsXML.topartists.artist[artist].@rank.text()
 				def artistName 	= topArtistsXML.topartists.artist[artist].name.text()
 				def artistPlays = topArtistsXML.topartists.artist[artist].playcount.text()
-				//render "${artistRank}: ${artistName} (${artistPlays}) <br />"
-				def artistURL 	= "${APIroot}?method=artist.gettoptags&artist=${artistName}&api_key=${APIkey}"				
-				def artistRESTResponse = new URL(artistURL).getText()
+				render "${artistRank}: ${artistName} (${artistPlays}) <br />"
+				def artistURL 	= "${APIroot}?method=artist.gettoptags&artist=${artistName}&api_key=${APIkey}".replaceAll(' ', '%20')				
+				//render "${artistURL}<br />"
+				//def artistRESTResponse = new URL(artistURL).getText()
+				def artistRESTResponse = artistURL.toURL().getText()
+				//render "${artistRESTResponse}<br />"
 				def artistXML 	= new XmlSlurper().parseText(artistRESTResponse)
 				//render "${artistXML}"
-				def artistTags	= artistXML.toptags.tag
+				//def artistTags	= artistXML.toptags.tag
 				//render "${artistTags}"
 				for (tag in 1..5){
 					def tagName = artistXML.toptags.tag[tag].name.text()
 					def tagCount = artistXML.toptags.tag[tag].count.text()
 					tags.put(tagName, tagCount)
-					//render "&nbsp&nbsp ${tagName}: ${tagCount} <br />" 
+					render "&nbsp&nbsp ${tagName}: ${tagCount} <br />" 
 				}
-				sleep 1 
 			}
 			render "${tags.toString()}"
 		}
