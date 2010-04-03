@@ -18,8 +18,7 @@ class UserController {
 			render "period: ${params.period} <br />"
 			
 			def tags = [:]
-			//artistPlays.put("test1", 1)
-			//render "test?: ${artistPlays.get("test1")}<br />"
+			int tagSum = 0
 			
 			render "<br />"
 			//for (artist in 0..(topArtistsList.size()-1)) {
@@ -30,18 +29,18 @@ class UserController {
 				def artistPlays = topArtistsXML.topartists.artist[artist].playcount.text()
 				render "${artistRank}: ${artistName} (${artistPlays}) <br />"
 				def artistURL 	= "${APIroot}?method=artist.gettoptags&artist=${artistName}&api_key=${APIkey}".replaceAll(' ', '%20')				
-				//render "${artistURL}<br />"
-				//def artistRESTResponse = new URL(artistURL).getText()
 				def artistRESTResponse = artistURL.toURL().getText()
-				//render "${artistRESTResponse}<br />"
 				def artistXML 	= new XmlSlurper().parseText(artistRESTResponse)
-				//render "${artistXML}"
-				//def artistTags	= artistXML.toptags.tag
-				//render "${artistTags}"
 				for (tag in 1..5){
 					def tagName = artistXML.toptags.tag[tag].name.text()
-					def tagCount = artistXML.toptags.tag[tag].count.text()
-					tags.put(tagName, tagCount)
+					def tagCount = artistXML.toptags.tag[tag].count.text().toInteger()
+					tagSum += tagCount
+					if (tags.get(tagName) == null) { 
+						tags.put(tagName, tagCount)
+					}else{
+						int tempCount = tagCount + tags.get(tagName)
+						tags.put(tagName, tempCount)
+					}
 					render "&nbsp&nbsp ${tagName}: ${tagCount} <br />" 
 				}
 			}
