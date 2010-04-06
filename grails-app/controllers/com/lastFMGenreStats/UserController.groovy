@@ -25,14 +25,30 @@ class UserController {
 			render "<br />"
 			//for (artist in 0..(topArtistsList.size()-1)) {
 			for (artist in 0..4) {
-				Thread.currentThread().sleep(1000)
-				def artistRank 	= topArtistsXML.topartists.artist[artist].@rank.text()
 				def artistName 	= topArtistsXML.topartists.artist[artist].name.text()
 				def artistPlays = topArtistsXML.topartists.artist[artist].playcount.text()
-				render "${artistRank}: ${artistName} (${artistPlays}) <br />"
-				def artistURL 	= "${APIroot}?method=artist.gettoptags&artist=${artistName}&api_key=${APIkey}".replaceAll(' ', '%20')				
-				def artistRESTResponse = artistURL.toURL().getText()
-				def artistXML 	= new XmlSlurper().parseText(artistRESTResponse)
+				//render "${artistRank}: ${artistName} (${artistPlays}) <br />"
+				//currentArtist = Artist.findByArtistName(artistName)
+				//if (currentArtist == null){
+					Thread.currentThread().sleep(1000)
+					def artistURL 	= "${APIroot}?method=artist.gettoptags&artist=${artistName}&api_key=${APIkey}".replaceAll(' ', '%20')				
+					def artistRESTResponse = artistURL.toURL().getText()
+					def artistXML 	= new XmlSlurper().parseText(artistRESTResponse)
+					def newArtist = new Artist(artistName: artistName)
+					def totalTagCount = 0
+					for (tag in 1..5){
+						totalTagCount += artistXML.toptags.tag[tag].count.text().toInteger()
+					}
+					for (tag in 1..5){
+						def tagName = artistXML.toptags.tag[tag].name.text()
+						def tagCount = artistXML.toptags.tag[tag].count.text().toInteger()
+						def newTagRatio = new tagRatio(tagName: tagName, tagRatio: (tagCount/totalTagCount))
+						newArtist.addToTagRatios(newTagRatio)
+					}
+					currentArtist = newArtist
+				//}					
+
+				
 				for (tag in 1..5){
 					def tagName = artistXML.toptags.tag[tag].name.text()
 					def tagCount = artistXML.toptags.tag[tag].count.text().toInteger()
@@ -43,7 +59,7 @@ class UserController {
 						int tempCount = tagCount + tags.get(tagName)
 						tags.put(tagName, tempCount)
 					}
-					render "&nbsp&nbsp ${tagName}: ${tagCount} <br />" 
+					//render "&nbsp&nbsp ${tagName}: ${tagCount} <br />" 
 				}
 			}
 			render "${tags.toString()}"

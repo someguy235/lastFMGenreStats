@@ -5,9 +5,9 @@ class Tag {
 	int tagCount
 	//float tagRatio
 
-    	static constraints = {
+	static constraints = {
 		tagName(nullable:false, unique:true)
-    	}
+	}
 
 	//static hasMany = [artists:Artist]
 	static belongsTo = Artist
