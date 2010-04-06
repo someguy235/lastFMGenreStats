@@ -2,6 +2,8 @@ package com.lastFMGenreStats
 
 class UserController {
 		
+	def scaffold = true
+
     def index = {
 		}
 

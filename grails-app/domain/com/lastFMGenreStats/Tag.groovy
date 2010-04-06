@@ -1,12 +1,15 @@
 package com.lastFMGenreStats
 
 class Tag {
-		String name
-		int count
+	String tagName
+	int tagCount
+	//float tagRatio
 
-    static constraints = {
-			name(nullable:true, unique:true)
-    }
+    	static constraints = {
+		tagName(nullable:false, unique:true)
+    	}
 
-		static hasMany [artists:Artist]
+	//static hasMany = [artists:Artist]
+	static belongsTo = Artist
+	//static belongsTo = User
 }
