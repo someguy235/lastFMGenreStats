@@ -6,6 +6,9 @@ class Artist {
 	//static belongsTo = [ user : User ]
 	static hasMany = [ tagRatios : TagRatio ]
 			
+	String toString(){
+		"artistName: (${artistName})"
+	}
     static constraints = {
 			artistName(nullable:false, unique:true)
     }

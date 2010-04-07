@@ -21,47 +21,54 @@ class UserController {
 			
 			def tags = [:]
 			int tagSum = 0
+			int totalPlays = 0
+			Artist currentArtist
 			
-			render "<br />"
 			//for (artist in 0..(topArtistsList.size()-1)) {
 			for (artist in 0..4) {
 				def artistName 	= topArtistsXML.topartists.artist[artist].name.text()
-				def artistPlays = topArtistsXML.topartists.artist[artist].playcount.text()
-				//render "${artistRank}: ${artistName} (${artistPlays}) <br />"
+				def artistPlays = topArtistsXML.topartists.artist[artist].playcount.text().toInteger()
+				totalPlays += artistPlays
 				//currentArtist = Artist.findByArtistName(artistName)
 				//if (currentArtist == null){
 					Thread.currentThread().sleep(1000)
 					def artistURL 	= "${APIroot}?method=artist.gettoptags&artist=${artistName}&api_key=${APIkey}".replaceAll(' ', '%20')				
 					def artistRESTResponse = artistURL.toURL().getText()
 					def artistXML 	= new XmlSlurper().parseText(artistRESTResponse)
-					def newArtist = new Artist(artistName: artistName)
+					def newArtist = new Artist(artistName: artistName).save()
 					def totalTagCount = 0
 					for (tag in 1..5){
 						totalTagCount += artistXML.toptags.tag[tag].count.text().toInteger()
 					}
 					for (tag in 1..5){
-						def tagName = artistXML.toptags.tag[tag].name.text()
+						def tagName = artistXML.toptags.tag[tag].name.text().toLowerCase()
 						def tagCount = artistXML.toptags.tag[tag].count.text().toInteger()
-						def newTagRatio = new tagRatio(tagName: tagName, tagRatio: (tagCount/totalTagCount))
+						float tagRatio = tagCount/totalTagCount
+						def newTagRatio = new TagRatio(tagName: tagName, tagRatio: tagRatio, artist: newArtist).save()
 						newArtist.addToTagRatios(newTagRatio)
 					}
 					currentArtist = newArtist
 				//}					
-
-				
-				for (tag in 1..5){
-					def tagName = artistXML.toptags.tag[tag].name.text()
-					def tagCount = artistXML.toptags.tag[tag].count.text().toInteger()
-					tagSum += tagCount
+				for (tag in currentArtist.tagRatios){
+					def tagName = tag.tagName
+					float tagRatio = tag.tagRatio
+					float weightedTag = artistPlays * tagRatio
 					if (tags.get(tagName) == null) { 
-						tags.put(tagName, tagCount)
+						tags.put(tagName, weightedTag)
 					}else{
-						int tempCount = tagCount + tags.get(tagName)
-						tags.put(tagName, tempCount)
+						int tempWeightedTag = weightedTag + tags.get(tagName)
+						tags.put(tagName, tempWeightedTag)
 					}
-					//render "&nbsp&nbsp ${tagName}: ${tagCount} <br />" 
 				}
 			}
-			render "${tags.toString()}"
+			render "Total Plays: ${totalPlays}<br /><br />"
+			float totalPct = 0.0
+			tags.sort{ it.value as int }.each{ key, value ->
+				render "${key}: ${value}<br />"
+				float pct = value/totalPlays
+				render "${pct}<br />"
+				totalPct += pct
+			}
+			render "<br />${totalPct}<br />"
 		}
 }
