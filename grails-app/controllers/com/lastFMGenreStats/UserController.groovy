@@ -16,8 +16,8 @@ class UserController {
 			def topArtistsXML = new XmlSlurper().parseText(topArtistsRESTResponse)
 			def topArtistsList = topArtistsXML.topartists.artist
 
-			render "user: ${params.username} <br />"
-			render "period: ${params.period} <br />"
+			//render "user: ${params.username} <br />"
+			//render "period: ${params.period} <br />"
 			
 			def tags = [:]
 			int tagSum = 0
@@ -61,14 +61,15 @@ class UserController {
 					}
 				}
 			}
-			render "Total Plays: ${totalPlays}<br /><br />"
-			float totalPct = 0.0
-			tags.sort{ it.value as int }.each{ key, value ->
-				render "${key}: ${value}<br />"
-				float pct = value/totalPlays
-				render "${pct}<br />"
-				totalPct += pct
-			}
-			render "<br />${totalPct}<br />"
+			//render "Total Plays: ${totalPlays}<br /><br />"
+			//float totalPct = 0.0
+			//tags.sort{ it.value as int }.each{ key, value ->
+				//render "${key}: ${value}<br />"
+				//float pct = value/totalPlays
+				//render "${pct}<br />"
+				//totalPct += pct
+			//}
+			//render "<br />${totalPct}<br />"
+			return [tags: tags, totalPlays: totalPlays]
 		}
 }

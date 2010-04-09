@@ -8,7 +8,7 @@ class TagRatio {
 	static belongsTo = [artist:Artist]
 
 	String toString(){
-		"tagName: (${tagName}), tagRatio: (${tagRatio}), belongsTo: (${belongsTo.toString()})"
+		"tagName: (${tagName}), tagRatio: (${tagRatio})"//, belongsTo: (${belongsTo.toString()})"
 	}
     static constraints = {
     }
