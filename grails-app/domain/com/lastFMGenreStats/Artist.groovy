@@ -10,6 +10,6 @@ class Artist {
 		"artistName: (${artistName})"
 	}
     static constraints = {
-			artistName(nullable:false, unique:true)
+			artistName(nullable:false, unique:false)
     }
 }

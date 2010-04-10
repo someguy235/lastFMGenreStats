@@ -1,0 +1,5 @@
+* style output pages
+* fix error with multiple requests in the same session 
+*--this is a problem with unique:true, adding the db caching will resolve it
+* choose how many artists to retrieve
+

@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Welcome to Last.fm Genre Stats</title>
-		<meta name="layout" content="main" />
+		<meta name="layout" content="grails-content" />
 		<style type="text/css" media="screen">
 
 			#nav {
