@@ -1,5 +1,9 @@
-* style output pages
-* fix error with multiple requests in the same session 
-*--this is a problem with unique:true, adding the db caching will resolve it
+* style output page
+* style index page
 * choose how many artists to retrieve
-
+* add artists to database when retrieved
+* search db for artists before hitting last.fm
+* adjust progress bars relative to highest value
+* tag cloud
+* move to google app engine
+* analytics

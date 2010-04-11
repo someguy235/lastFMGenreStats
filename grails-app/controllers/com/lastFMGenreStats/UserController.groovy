@@ -16,16 +16,13 @@ class UserController {
 		def topArtistsXML = new XmlSlurper().parseText(topArtistsRESTResponse)
 		def topArtistsList = topArtistsXML.topartists.artist
 
-		//render "user: ${params.username} <br />"
-		//render "period: ${params.period} <br />"
-		
 		def tags = [:]
 		int tagSum = 0
 		int totalPlays = 0
 		Artist currentArtist
 		
 		//for (artist in 0..(topArtistsList.size()-1)) {
-		for (artist in 0..0) {
+		for (artist in 0..10) {
 			def artistName 	= topArtistsXML.topartists.artist[artist].name.text()
 			def artistPlays = topArtistsXML.topartists.artist[artist].playcount.text().toInteger()
 			totalPlays += artistPlays
@@ -55,21 +52,14 @@ class UserController {
 				float weightedTag = artistPlays * tagRatio
 				if (tags.get(tagName) == null) { 
 					tags.put(tagName, weightedTag)
+					//render "not found: ${tags.get(tagName)}<br />"
 				}else{
-					int tempWeightedTag = weightedTag + tags.get(tagName)
+					float tempWeightedTag = weightedTag + tags.get(tagName)
 					tags.put(tagName, tempWeightedTag)
+					//render "found: ${tags.get(tagName)}<br />"
 				}
 			}
 		}
-		//render "Total Plays: ${totalPlays}<br /><br />"
-		//float totalPct = 0.0
-		//tags.sort{ it.value as int }.each{ key, value ->
-			//render "${key}: ${value}<br />"
-			//float pct = value/totalPlays
-			//render "${pct}<br />"
-			//totalPct += pct
-		//}
-		//render "<br />${totalPct}<br />"
 		return [tags: tags, totalPlays: totalPlays, username: params.username, period: params.period]
 	}
 }

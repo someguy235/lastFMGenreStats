@@ -23,6 +23,7 @@ h1 {
     font-weight: normal;
     font-size: 18px;
     margin: .8em 0 .3em 0;
+    text-align: center;
 }
 
 h2 {
@@ -30,6 +31,7 @@ h2 {
     font-weight: normal;
     font-size: 14px;
     margin: .8em 0 .3em 0;
+    text-align: center;
 }
 
 ul {
@@ -67,4 +69,25 @@ input:focus, select:focus, textarea:focus {
 
 .tagOutput{
 	padding: 10px 0px 10px 0px;	
+	font-size: 14px;
+	width: 100%;
+}
+.tagBar{
+	width: 50%;	
+	float: left;
+}
+.tagNameLabel{
+	width: 20%;
+	height: 2em;
+	float: left;
+}
+.tagPctLabel{
+	width: 15%;
+	height: 2em;
+	float: left;
+}
+.clear {
+    clear: both;
+	height: 0;
+	visibility: hidden;
 }

@@ -2,11 +2,6 @@
 	<head>
 		<title>Last.fm Genre Results for ${username}</title>
 		<meta name="layout" content="main"/>
-		<g:javascript>
-			$(document).ready(function() {
-				$("#progressbar").progressbar({ value: 25 });
-			});
-		</g:javascript>
 	</head>
 	<body>
 		<div class="body">
@@ -20,15 +15,25 @@
 				</g:else>
 			</h2>
 			<div class="tagOutput">
-				<g:each in="${tags.sort{it.value as int}}">
-					<g:set var="tagPct" value="${it.value / totalPlays * 100}" />
-					${it.key}: ${it.value} (${tagPct})<br />
-					
-					<br />
+				<g:each in="${tags.sort{it.value as int}.collect{it}.reverse()}">
+					<g:set var="tagKey" value="${it.key.replaceAll(' ', '_')}" />
+					<g:set var="tagPct" value="${(it.value / totalPlays * 100).round(1)}" />
+					<!-- ${it.key}: ${it.value} (${tagPct})<br /> -->
+					<div class="tagNameLabel">${it.key}</div>
+					<!-- <div class="clear"></div> -->
+					<g:javascript>
+					$(document).ready(function() {
+						$("#${tagKey}").progressbar({ value: ${tagPct} });
+					});	
+					</g:javascript>
+					<div class="tagBar" id="${tagKey}"></div>
+					<!-- <div class="clear"></div> -->
+					<div class="tagPctLabel">&nbsp ${tagPct}%</div>	
+					<br /><br />
 				</g:each>
 			</div>
-			<div id="progressbar"></div>
-			<g:link action='index'>Search Again</g:link>
+			<div class="clear"></div> 
+			<g:link action='index'><h2>Search Again</h2></g:link>
 		</div>
 	</body>
 </html>
