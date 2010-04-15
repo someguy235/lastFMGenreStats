@@ -3,13 +3,12 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 		<meta name="layout" content="main"/>
-		<title>Last.fm Genre Stats</title>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$("#progressbar").progressbar({ value: 25 });
+		<g:javascript>
+			$(function() {
+				$("#period").buttonset();
 			});
-		</script>
-		
+		</g:javascript>
+		<title>Last.fm Genre Stats</title>
 	</head>
 	<body>
 		<div class="body">
@@ -17,19 +16,15 @@
 				<label for="username">Username</label>
 				<g:textField name="username" />
 				<br />
-				<label for="period">Period</label>
+				<div class="ui-buttonset" id="period">
+					<input class="ui-helper-hidden-accessible" id="Overall" name="period" type="radio" checked="checked"><label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" aria-pressed="true"  for="Overall"><span class="ui-button-text">Overall</span></label>
+					<input class="ui-helper-hidden-accessible" id="7day"    name="period" type="radio">                  <label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only"                                aria-pressed="false" for="7day">   <span class="ui-button-text">7 Days</span></label>
+					<input class="ui-helper-hidden-accessible" id="3month"  name="period" type="radio">                  <label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only"                                aria-pressed="false" for="3month"> <span class="ui-button-text">3 Months</span></label>
+					<input class="ui-helper-hidden-accessible" id="6month"  name="period" type="radio">                  <label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only"                                aria-pressed="false" for="6month"> <span class="ui-button-text">6 Months</span></label>
+					<input class="ui-helper-hidden-accessible" id="12month" name="period" type="radio">                  <label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right"                aria-pressed="false" for="12month"><span class="ui-button-text">12 Months</span></label>
+				</div>
 				<br />
-				<g:radio name="period" value="Overall" checked="true" />
-				Overall <br />
-				<g:radio name="period" value="7day" />
-				7 Days <br />
-				<g:radio name="period" value="3month" />
-				3 Months <br />
-				<g:radio name="period" value="6month" />
-				6 Months <br />
-				<g:radio name="period" value="12month" />
-				12 Months <br /><br />
-				<g:submitButton name="search" value="Submit"/>
+				<button aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="submit"><span class="ui-button-text">Submit</span></button>
 			</g:form>
 		</div>
 	</body>

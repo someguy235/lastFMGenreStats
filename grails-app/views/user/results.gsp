@@ -18,16 +18,13 @@
 				<g:each in="${tags.sort{it.value as int}.collect{it}.reverse()}">
 					<g:set var="tagKey" value="${it.key.replaceAll(' ', '_')}" />
 					<g:set var="tagPct" value="${(it.value / totalPlays * 100).round(1)}" />
-					<!-- ${it.key}: ${it.value} (${tagPct})<br /> -->
 					<div class="tagNameLabel">${it.key}</div>
-					<!-- <div class="clear"></div> -->
 					<g:javascript>
 					$(document).ready(function() {
 						$("#${tagKey}").progressbar({ value: ${tagPct} });
 					});	
 					</g:javascript>
 					<div class="tagBar" id="${tagKey}"></div>
-					<!-- <div class="clear"></div> -->
 					<div class="tagPctLabel">&nbsp ${tagPct}%</div>	
 					<br /><br />
 				</g:each>
