@@ -13,6 +13,10 @@
         <div id="spinner" class="spinner" style="display:none;">
             <img src="${resource(dir:'images',file:'spinner.gif')}" alt="Spinner" />
         </div>
+        <h1>Last.fm Genre Stats</h1>
         <g:layoutBody />
+        <h3>
+        	All: &copy 2010, Ethan Shepherd
+        </h3>
     </body>
 </html>

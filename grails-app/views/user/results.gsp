@@ -4,16 +4,16 @@
 		<meta name="layout" content="main"/>
 	</head>
 	<body>
-		<div class="body">
-			<h1>Results for ${username}</h1>
-			<h2>${totalPlays} plays 
-				<g:if test="${period == 'Overall'}">
+		<div class="main">
+			<h2>Popular tags for <b>${username}</b></h2>
+			<h3>${totalPlays} plays 
+				<g:if test="${period == 'overall'}">
 					${period}
 				</g:if>
 				<g:else>
 					over ${period}
 				</g:else>
-			</h2>
+			</h3>
 			<div class="tagOutput">
 				<g:each in="${tags.sort{it.value as int}.collect{it}.reverse()}">
 					<g:set var="tagKey" value="${it.key.replaceAll(' ', '_')}" />

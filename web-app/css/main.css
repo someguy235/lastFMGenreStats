@@ -1,15 +1,21 @@
 html {
-    margin-left: 25%;
+	/*width: 50%;*/
+	margin-left: 25%;
 	margin-right: 25%;
+	
+	
 }
 
 /* GENERAL */
 
 body {
-    background: #fff;
+	text-align: center;
+    background: #444;
     color: #333;
     font: 11px verdana, arial, helvetica, sans-serif;
-	margin-left: 1em;
+	margin:0;
+    padding:header-<length> 0 footer-<length> 0;
+	
 }
 
 a:link, a:visited, a:hover {
@@ -18,20 +24,27 @@ a:link, a:visited, a:hover {
     text-decoration: none;
 }
 
-h1 {
+h1{
+	text-align: center;	
+	background: #5686ba;
+	width: 100%;
+	
+}
+
+h2 {
     color: #5686BA;
     font-weight: normal;
     font-size: 18px;
     margin: .8em 0 .3em 0;
-    text-align: center;
+    /*text-align: center;*/
 }
 
-h2 {
+h3 {
     color: #000;
     font-weight: normal;
     font-size: 14px;
     margin: .8em 0 .3em 0;
-    text-align: center;
+    /*text-align: center;*/
 }
 
 ul {
@@ -58,11 +71,14 @@ input:focus, select:focus, textarea:focus {
     border: 1px solid #5686BA;
 }
 
-.body {
-    float: left;
-    width: 100%;
+
+
+.main {
+	text-align: center;
+    background: #eee;
+    /*width: 100%;*/
     padding: 10px;
-    margin: 0 15px 10px 15px;
+    /*margin: 1px;*/
     border: 1px solid #5686BA;
     
 }
@@ -86,8 +102,26 @@ input:focus, select:focus, textarea:focus {
 	height: 2em;
 	float: left;
 }
+.footer{
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+	text-align: center;
+	color: #5686ba;	
+	padding: 5px;
+}
 .clear {
     clear: both;
 	height: 0;
 	visibility: hidden;
 }
+.centered {
+	text-align: center;
+}
+
+p.last{
+	float: bottom;
+margin:0;
+padding:.1em 1em;
+} 

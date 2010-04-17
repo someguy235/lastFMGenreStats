@@ -8,10 +8,11 @@ class UserController {
 	}
 
 	def results = {
+		//render "${params.period}"
 		def APIkey = "503475a6b1d2cafdedf2f69ed4f677c3"
 		def APIroot = "http://ws.audioscrobbler.com/2.0/"
-
-		def topArtistsURL = "${APIroot}?method=user.gettopartists&user=${params.username}&period=${params.period}&api_key=${APIkey}"
+		def submitPeriod = params.period.replaceAll(' ', '').replaceAll('s', '')
+		def topArtistsURL = "${APIroot}?method=user.gettopartists&user=${params.username}&period=${submitPeriod}&api_key=${APIkey}"
 		def topArtistsRESTResponse = new URL(topArtistsURL).getText()
 		def topArtistsXML = new XmlSlurper().parseText(topArtistsRESTResponse)
 		def topArtistsList = topArtistsXML.topartists.artist
@@ -22,7 +23,7 @@ class UserController {
 		Artist currentArtist
 		
 		//for (artist in 0..(topArtistsList.size()-1)) {
-		for (artist in 0..10) {
+		for (artist in 0..0) {
 			def artistName 	= topArtistsXML.topartists.artist[artist].name.text()
 			def artistPlays = topArtistsXML.topartists.artist[artist].playcount.text().toInteger()
 			totalPlays += artistPlays
