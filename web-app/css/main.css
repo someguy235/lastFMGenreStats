@@ -93,14 +93,15 @@ input:focus, select:focus, textarea:focus {
 	float: left;
 }
 .tagNameLabel{
-	width: 20%;
-	height: 2em;
+	width: 25%;
 	float: left;
+	margin-top: 5px;
 }
 .tagPctLabel{
-	width: 15%;
-	height: 2em;
+	width: 24%;
 	float: left;
+	text-align: left;
+	margin-top: 5px;
 }
 .footer{
 	position: fixed;

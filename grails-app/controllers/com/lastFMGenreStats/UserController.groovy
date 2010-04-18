@@ -8,7 +8,6 @@ class UserController {
 	}
 
 	def results = {
-		//render "${params.period}"
 		def APIkey = "503475a6b1d2cafdedf2f69ed4f677c3"
 		def APIroot = "http://ws.audioscrobbler.com/2.0/"
 		def submitPeriod = params.period.replaceAll(' ', '').replaceAll('s', '')
@@ -21,14 +20,14 @@ class UserController {
 		int tagSum = 0
 		int totalPlays = 0
 		Artist currentArtist
-		
-		//for (artist in 0..(topArtistsList.size()-1)) {
-		for (artist in 0..0) {
+		//render "${params.numArtists.toInteger()}"
+		for (artist in 0..params.numArtists.toInteger()) {
+		//for (artist in 0..0) {
 			def artistName 	= topArtistsXML.topartists.artist[artist].name.text()
 			def artistPlays = topArtistsXML.topartists.artist[artist].playcount.text().toInteger()
 			totalPlays += artistPlays
-			//currentArtist = Artist.findByArtistName(artistName)
-			//if (currentArtist == null){
+			currentArtist = Artist.findByArtistName(artistName)
+			if (currentArtist == null){
 				Thread.currentThread().sleep(1000)
 				def artistURL 	= "${APIroot}?method=artist.gettoptags&artist=${artistName}&api_key=${APIkey}".replaceAll(' ', '%20')				
 				def artistRESTResponse = artistURL.toURL().getText()
@@ -46,21 +45,19 @@ class UserController {
 					newArtist.addToTagRatios(newTagRatio)
 				}
 				currentArtist = newArtist
-			//}					
+			}					
 			for (tag in currentArtist.tagRatios){
 				def tagName = tag.tagName
 				float tagRatio = tag.tagRatio
 				float weightedTag = artistPlays * tagRatio
 				if (tags.get(tagName) == null) { 
 					tags.put(tagName, weightedTag)
-					//render "not found: ${tags.get(tagName)}<br />"
 				}else{
 					float tempWeightedTag = weightedTag + tags.get(tagName)
 					tags.put(tagName, tempWeightedTag)
-					//render "found: ${tags.get(tagName)}<br />"
 				}
 			}
 		}
-		return [tags: tags, totalPlays: totalPlays, username: params.username, period: params.period]
+		return [tags: tags, totalPlays: totalPlays, username: params.username, period: params.period, numArtists: params.numArtists]
 	}
 }

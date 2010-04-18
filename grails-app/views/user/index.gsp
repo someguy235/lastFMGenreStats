@@ -8,6 +8,11 @@
 				$("#period").buttonset();
 			});
 		</g:javascript>
+		<g:javascript>
+			$(function() {
+				$("#numArtists").buttonset();
+			});
+		</g:javascript>
 		<title>Last.fm Genre Stats</title>
 	</head>
 	<body>
@@ -22,6 +27,13 @@
 					<input class="ui-helper-hidden-accessible" id="3month"  value="3 months"  name="period" type="radio">                  <label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only"                                aria-pressed="false" for="3month"> <span class="ui-button-text">3 Months</span></label>
 					<input class="ui-helper-hidden-accessible" id="6month"  value="6 months"  name="period" type="radio">                  <label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only"                                aria-pressed="false" for="6month"> <span class="ui-button-text">6 Months</span></label>
 					<input class="ui-helper-hidden-accessible" id="12month" value="12 months" name="period" type="radio">                  <label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right"                aria-pressed="false" for="12month"><span class="ui-button-text">12 Months</span></label>
+				</div>
+				<br />
+				<div class="ui-buttonset" id="numArtists">
+					<input class="ui-helper-hidden-accessible" id="1artist"   value="1"  name="numArtists" type="radio" checked="checked"><label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" aria-pressed="true"  for="1artist"><span class="ui-button-text">1 Artist</span></label>
+					<input class="ui-helper-hidden-accessible" id="5artists"  value="5"  name="numArtists" type="radio">                  <label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only"                                aria-pressed="false" for="5artists">   <span class="ui-button-text">5 Artists</span></label>
+					<input class="ui-helper-hidden-accessible" id="10artists" value="10" name="numArtists" type="radio">                  <label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only"                                aria-pressed="false" for="10artists"> <span class="ui-button-text">10 Artists</span></label>
+					<input class="ui-helper-hidden-accessible" id="20artists" value="20" name="numArtists" type="radio">                  <label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right"                aria-pressed="false" for="20artists"> <span class="ui-button-text">20 Artists</span></label>
 				</div>
 				<br />
 				<button aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="submit"><span class="ui-button-text">Submit</span></button>

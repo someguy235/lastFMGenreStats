@@ -2,6 +2,7 @@ package com.lastFMGenreStats
 
 class ArtistController {
 
-	def scaffold = true
-
+    //def index = { }
+    
+    def scaffold = true
 }

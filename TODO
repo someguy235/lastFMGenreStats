@@ -1,8 +1,8 @@
-* choose how many artists to retrieve
-* add artists to database when retrieved
-* search db for artists before hitting last.fm
 * adjust progress bars relative to highest value
 * tag cloud
 * move to google app engine
 * analytics
 * radio button gap
+* clean up js files
+* some results not sorted right (7 day only?)
+* check bounds for number of artists

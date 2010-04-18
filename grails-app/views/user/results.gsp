@@ -13,6 +13,13 @@
 				<g:else>
 					over ${period}
 				</g:else>
+				from ${numArtists} 
+				<g:if test="${numArtists == '1'}">
+					artist.
+				</g:if>
+				<g:else>
+					artists.
+				</g:else>
 			</h3>
 			<div class="tagOutput">
 				<g:each in="${tags.sort{it.value as int}.collect{it}.reverse()}">
