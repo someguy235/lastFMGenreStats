@@ -5,7 +5,7 @@
 	</head>
 	<body>
 		<div class="main">
-			<h2>Popular tags for <b>${username}</b></h2>
+			<h2>Results for <b>${username}</b></h2>
 			<h3>${totalPlays} plays 
 				<g:if test="${period == 'overall'}">
 					${period}
@@ -21,8 +21,18 @@
 					artists.
 				</g:else>
 			</h3>
+			<h3>${artistsPlayed.toString() }</h3>
+		</div>
+		<br />
+		<div class="main">
+			<div class="tagCloud">
+			</div>
+		</div>
+		<br />
+		<div class="main">
+			<h2>Popular Tags</h2>
 			<div class="tagOutput">
-				<g:each in="${tags.sort{it.value as int}.collect{it}.reverse()}">
+				<g:each in="${tags.sort{a, b -> a.value <=> b.value}.collect{it}.reverse()}">
 					<g:set var="tagKey" value="${it.key.replaceAll(' ', '_')}" />
 					<g:set var="tagPct" value="${(it.value / totalPlays * 100).round(1)}" />
 					<div class="tagNameLabel">${it.key}</div>
@@ -36,8 +46,10 @@
 					<br /><br />
 				</g:each>
 			</div>
-			<div class="clear"></div> 
-			<g:link action='index'><h2>Search Again</h2></g:link>
+		</div>
+		<br />
+		<div class="main">
+			<g:link action='index'><h2>Search Again</h2><br /></g:link>
 		</div>
 	</body>
 </html>

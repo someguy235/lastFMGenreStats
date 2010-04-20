@@ -2,7 +2,7 @@ package com.lastFMGenreStats
 
 class UserController {
 		
-	def scaffold = true
+	//def scaffold = true
 
     def index = {
 	}
@@ -17,13 +17,14 @@ class UserController {
 		def topArtistsList = topArtistsXML.topartists.artist
 
 		def tags = [:]
+		def artistsPlayed = []
 		int tagSum = 0
 		int totalPlays = 0
 		Artist currentArtist
-		//render "${params.numArtists.toInteger()}"
-		for (artist in 0..params.numArtists.toInteger()) {
-		//for (artist in 0..0) {
+		
+		for (artist in 1..params.numArtists.toInteger()) {
 			def artistName 	= topArtistsXML.topartists.artist[artist].name.text()
+			artistsPlayed.add(artistName)
 			def artistPlays = topArtistsXML.topartists.artist[artist].playcount.text().toInteger()
 			totalPlays += artistPlays
 			currentArtist = Artist.findByArtistName(artistName)
@@ -45,7 +46,7 @@ class UserController {
 					newArtist.addToTagRatios(newTagRatio)
 				}
 				currentArtist = newArtist
-			}					
+			}
 			for (tag in currentArtist.tagRatios){
 				def tagName = tag.tagName
 				float tagRatio = tag.tagRatio
@@ -58,6 +59,6 @@ class UserController {
 				}
 			}
 		}
-		return [tags: tags, totalPlays: totalPlays, username: params.username, period: params.period, numArtists: params.numArtists]
+		return [tags: tags, totalPlays: totalPlays, username: params.username, period: params.period, numArtists: params.numArtists, artistsPlayed: artistsPlayed]
 	}
 }
