@@ -2,6 +2,10 @@
 	<head>
 		<title>Last.fm Genre Results for ${username}</title>
 		<meta name="layout" content="main"/>
+		<g:javascript>
+		
+		
+		</g:javascript>
 	</head>
 	<body>
 		<div class="main">
@@ -26,6 +30,17 @@
 		<br />
 		<div class="main">
 			<div class="tagCloud">
+				<ul id="xdef" class="xmpl">
+					<g:each in="${tags.sort{a, b -> a.key <=> b.key}.collect{it}}">
+						<li title="${it.key} " value="${it.value}">${it.key}</li>
+					</g:each>
+				</ul>
+				<g:javascript>
+					$(document).ready(function() {
+						$("#xdef").tagcloud({type:"list", sizemin:16});
+					});
+				</g:javascript>
+				
 			</div>
 		</div>
 		<br />

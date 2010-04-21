@@ -7,6 +7,7 @@
         <g:javascript library="jquery" />
         <g:javascript library="application" />
         <jq:plugin name="ui" />
+        <jq:plugin name="tagcloud" />
     	<g:layoutHead />
     </head>
     <body>
