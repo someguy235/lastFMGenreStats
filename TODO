@@ -3,7 +3,6 @@
 * move to google app engine
 * analytics
 * radio button gap (FF problem)
-* clean up js files
 * check bounds for number of artists
 * cross-browser
 * check for null username

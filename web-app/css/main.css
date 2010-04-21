@@ -1,3 +1,5 @@
+* { margin: 0; padding: 0; }
+
 html {
 	/*width: 50%;*/
 	margin-left: 25%;
@@ -80,8 +82,15 @@ input:focus, select:focus, textarea:focus {
     padding: 10px;
     /*margin: 1px;*/
     border: 1px solid #5686BA;
-    
 }
+
+.search {
+	text-align: center;
+    background: #eee;
+    padding: 10px;
+    border: 1px solid #5686BA;
+}	
+
 
 .tagOutput{
 	padding: 10px 0px 10px 0px;	

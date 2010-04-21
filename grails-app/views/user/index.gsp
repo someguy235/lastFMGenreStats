@@ -13,7 +13,7 @@
 				$("#numArtists").buttonset();
 			});
 		</g:javascript>
-		<title>Last.fm Genre Stats</title>
+		<title>Last.fm Tag Stats</title>
 	</head>
 	<body>
 		<div class="main centered">
