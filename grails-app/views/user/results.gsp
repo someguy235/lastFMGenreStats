@@ -20,13 +20,18 @@
 					over ${period}
 				</g:else>
 				from ${numArtists} 
-				<g:if test="${numArtists == '1'}">
+				<g:if test="${numArtists == 1}">
 					artist.
 				</g:if>
 				<g:else>
 					artists.
 				</g:else>
 			</h3>
+			<g:if test="${flash.message}">
+				<div class="flash">
+					${flash.message}
+				</div>
+			</g:if>
 			<h3>
 				<g:set var="first" value="${0}" />
 				<g:each var="artist" in="${artistsPlayed}">

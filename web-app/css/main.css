@@ -129,9 +129,10 @@ input:focus, select:focus, textarea:focus {
 .centered {
 	text-align: center;
 }
-
-p.last{
-	float: bottom;
-margin:0;
-padding:.1em 1em;
-} 
+.flash{
+	background: #CFC233;
+	font-size: 14px;
+	padding: .3em;
+    margin: .8em 0 .3em 0;
+	
+}

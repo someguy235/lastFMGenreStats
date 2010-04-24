@@ -1,8 +1,11 @@
 * adjust progress bars relative to highest value
-* links to tags in tag cloud
 * move to google app engine
 * analytics
 * radio button gap (FF problem)
-* check bounds for number of artists
-* cross-browser
+
+
+Done:
+* links to tags in tag cloud
 * check for null username
+* cross-browser
+* check bounds for number of artists

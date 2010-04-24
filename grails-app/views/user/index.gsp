@@ -18,8 +18,16 @@
 	<body>
 		<div class="main centered">
 			<g:form action="results">
-				<label for="username"><h3>Username</label>
-				<g:textField name="username" /></h3>
+				<h3>
+					<label for="username">Username</label>
+					<g:textField name="username" />
+				</h3>
+				<g:if test="${flash.message}">
+					<div class="flash">
+						${flash.message}
+					</div>
+				</g:if>
+				
 				<br />
 				<div class="ui-buttonset" id="period">
 					<input class="ui-helper-hidden-accessible" id="Overall" value="overall"   name="period" type="radio" checked="checked"><label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" aria-pressed="true"  for="Overall"><span class="ui-button-text">Overall</span></label>
