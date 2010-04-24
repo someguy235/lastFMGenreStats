@@ -1,4 +1,3 @@
-* adjust progress bars relative to highest value
 * move to google app engine
 * analytics
 * radio button gap (FF problem)
@@ -9,3 +8,5 @@ Done:
 * check for null username
 * cross-browser
 * check bounds for number of artists
+* fix root context
+* error from not enough tags? (numberFormatException ln 55)

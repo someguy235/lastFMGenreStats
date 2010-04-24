@@ -4,5 +4,5 @@ class ArtistController {
 
     //def index = { }
     
-    def scaffold = true
+    //def scaffold = true
 }

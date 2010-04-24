@@ -26,16 +26,13 @@ class UserController {
 			def artistsPlayed = []
 			int tagSum = 0
 			int totalPlays = 0
-			int numArtistsPlayed = 0
 			Artist currentArtist
+			int numArtistsPlayed = params.numArtists.toInteger()
 			
 			if (topArtistsList.size() < params.numArtists.toInteger()){
 				numArtistsPlayed = topArtistsList.size()
 				flash.message = "There weren't enough artists played in this time range, " +
 						"so we used all ${numArtistsPlayed} that were there."
-			}
-			else{
-				numArtistsPlayed = params.numArtists.toInteger()
 			}
 			
 			for (artist in 0..<numArtistsPlayed) {
@@ -51,10 +48,14 @@ class UserController {
 					def artistXML 	= new XmlSlurper().parseText(artistRESTResponse)
 					def newArtist = new Artist(artistName: artistName).save()
 					def totalTagCount = 0
-					for (tag in 1..5){
+					def numTags = artistXML.toptags.tag.size()
+					if ( numTags > 5 ){
+						numTags = 5
+					}
+					for (tag in 0..<numTags){
 						totalTagCount += artistXML.toptags.tag[tag].count.text().toInteger()
 					}
-					for (tag in 1..5){
+					for (tag in 0..<numTags){
 						def tagName = artistXML.toptags.tag[tag].name.text().toLowerCase()
 						def tagCount = artistXML.toptags.tag[tag].count.text().toInteger()
 						float tagRatio = tagCount/totalTagCount
