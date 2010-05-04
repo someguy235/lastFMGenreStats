@@ -19,7 +19,7 @@
 		<div class="main centered">
 			<g:form action="results">
 				<h3>
-					<label for="username">Username</label>
+					<label for="username">Last.fm Username</label>
 					<g:textField name="username" />
 				</h3>
 				<g:if test="${flash.message}">

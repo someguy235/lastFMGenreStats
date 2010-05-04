@@ -11,15 +11,15 @@
     	<g:layoutHead />
     </head>
     <body>
-        <div id="spinner" class="spinner" style="display:none;">
+        	<div id="spinner" class="spinner" style="display:none;">
             <img src="${resource(dir:'images',file:'spinner.gif')}" alt="Spinner" />
-        </div>
-        <br />
-        <h1>Last.fm Tag Stats</h1>
-        <br />
-        <g:layoutBody />
-        <h3>
-        	All: &copy 2010, Ethan Shepherd
-        </h3>
+        	</div>
+        	<br />
+        	<h1>Last.fm Tag Stats</h1>
+        	<br />
+        	<g:layoutBody />
+        	<h3>
+        		All: &copy 2010, Ethan Shepherd
+        	</h3>
     </body>
 </html>
