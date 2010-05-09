@@ -1,5 +1,3 @@
-* move to google app engine
-* analytics
 * radio button gap (FF problem)
 
 
@@ -10,3 +8,4 @@ Done:
 * check bounds for number of artists
 * fix root context
 * error from not enough tags? (numberFormatException ln 55)
+* analytics

@@ -67,7 +67,6 @@
 		</div>
 		<br />
 		<div class="main">
-			<h2>Popular Tags</h2>
 			<div class="tagOutput">
 				<g:each var="tag" in="${tags.sort{a, b -> a.value <=> b.value}.collect{it}.reverse()}">
 					<g:set var="tagKey" value="${tag.key.replaceAll(' ', '_')}" />
