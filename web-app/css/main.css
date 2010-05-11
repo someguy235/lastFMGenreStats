@@ -2,6 +2,7 @@
 
 html {
 	text-align: center;
+	background-image: url("../images/stripe.png");
 }
 
 /* GENERAL */
@@ -9,7 +10,8 @@ html {
 body {
 	width: 650px;
 	text-align: center;
-    background: #444;
+/*	background-image: url("../images/stripe.png");*/
+  /*  background: #444;*/
     color: #333;
     font: 11px verdana, arial, helvetica, sans-serif;
 	margin:0 auto;
