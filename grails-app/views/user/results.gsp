@@ -72,17 +72,19 @@
 					<g:set var="tagKey" value="${tag.key.replaceAll(' ', '_')}" />
 					<g:set var="tagPct" value="${(tag.value / totalPlays * 100).round(1)}" />
 					<g:set var="tagURL" value="${(tagURLRoot + tag.key).replaceAll(' ', '%20')}" />
-					<div class="tagNameLabel">
-						<g:link url="${tagURL}">${tag.key}</g:link>
-					</div>
-					<g:javascript>
-					$(document).ready(function() {
-						$("#${tagKey}").progressbar({ value: ${tagPct} });
-					});	
-					</g:javascript>
-					<div class="tagBar" id="${tagKey}"></div>
-					<div class="tagPctLabel">&nbsp ${tagPct}%</div>	
-					<br /><br />
+          <div class="tagRow">
+            <div class="tagNameLabel">
+              <g:link url="${tagURL}">${tag.key}</g:link>
+            </div>
+            <g:javascript>
+              $(document).ready(function() {
+                $("#${tagKey}").progressbar({ value: ${tagPct} });
+              });
+            </g:javascript>
+            <div class="tagBar" id="${tagKey}"></div>
+            <div class="tagPctLabel">&nbsp ${tagPct}%</div>
+          </div>
+          <div class="clear"></div>
 				</g:each>
 			</div>
 		</div>
