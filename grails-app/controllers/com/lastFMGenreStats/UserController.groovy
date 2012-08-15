@@ -14,7 +14,7 @@ class UserController {
     		flash.message = "Invalid User Name"
     	}
     	else{
-			def APIkey = ""
+			def APIkey = "503475a6b1d2cafdedf2f69ed4f677c3"
 			def APIroot = "http://ws.audioscrobbler.com/2.0/"
 			def submitPeriod = params.period.replaceAll(' ', '').replaceAll('s', '')
 			def topArtistsURL = "${APIroot}?method=user.gettopartists&user=${params.username}&period=${submitPeriod}&api_key=${APIkey}"
